@@ -12,10 +12,10 @@ const itemReducer = (state = [], action) => {
 
 //----------------ACTION CREATORS-------------------
 
-export const itemsGet = () => {
+export const itemsGet = (offset) => {
   return async (dispatch) => {
     try {
-      const items = await itemService.getItems()
+      const items = await itemService.getItems(offset)
       dispatch({ type: 'ITEMS_GET', items })
     } catch (exception) {
       console.log(exception)
