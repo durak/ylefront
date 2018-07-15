@@ -9,7 +9,7 @@ const ItemList = ({ items }) => {
         <p>{n.title}</p>
         <p>{n.description}</p>
         <p>{n.originalTitle}</p>
-        <img src={`http://images.cdn.yle.fi/image/upload/w_120,h_120,c_fit/${n.image.id}.jpg`} alt="kuva" />        
+           
       </li>
     )
   }
@@ -35,3 +35,5 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps
 )(ItemList)
+
+//<img src={`http://images.cdn.yle.fi/image/upload/w_120,h_120,c_fit/${n.image.id}.jpg`} alt="kuva" />     

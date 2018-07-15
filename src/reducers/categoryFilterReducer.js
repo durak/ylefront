@@ -27,6 +27,8 @@ export const categoryFilterToggle = (category) => {
     } else {
       dispatch({ type: 'CATEGORY_FILTER_POSITIVE', category })
     }
+    console.log(category)
+    dispatch({type: 'CATEGORY_FILTER_REMOVE', category: {id: category.broader}})
 
     dispatch(itemsNewQuery())
   }

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { Container, Segment, Menu } from 'semantic-ui-react'
+import { Container, Segment, Menu, Icon } from 'semantic-ui-react'
 
 import { itemsGetMore, itemsNewQuery } from '../reducers/itemReducer'
 import { categoriesGet } from '../reducers/categoryReducer'
-import ItemList from './Item/ItemList'
-import CategoryList from './Category/CategoryList'
+import ItemList from './ItemList'
+import CategoryListContainer from './Category/CategoryListContainer'
+import Sidemenu from './Sidemenu'
 
 class App extends Component {
 
@@ -29,41 +30,34 @@ class App extends Component {
           
           <Menu inverted fixed="left" vertical style={{ width: '250px', overflowY: 'scroll' }}>
 
-            <Menu.Item>regular item </Menu.Item>
-            <Menu as={Menu.Item}>
-              <Menu.Item><span> EKAA </span><span> TOKAA </span></Menu.Item>
-              <Menu.Item link as={Link} to="/">Programs</Menu.Item>
-              <Menu.Item link as={Link} to="/categories">Categories</Menu.Item>
-              <Menu.Item link>Asetukset</Menu.Item>
-              <Menu.Item link>Suosikits</Menu.Item>
             
+            <Menu as={Menu.Item}>   
+              <Menu.Header>AREENATON</Menu.Header>           
+              <Menu.Item link as={Link} to="/">Ohjelmat</Menu.Item>              
+              <Menu.Item link>Suosikit</Menu.Item>
+              <Menu.Item link>Asetukset</Menu.Item>                        
             </Menu>
             
 
             
-              <CategoryList />
+              <CategoryListContainer />
             
           </Menu>
 
-          <div style={{ marginLeft: '250px' }}>
+          <Segment style={{ marginLeft: '250px' }}>
 
-            <div className="menu">
-              <Link to="/">Programs</Link>&nbsp;
-            <Link to="/categories">Categories</Link>
-            </div>
 
-            <Segment vertical floated="right">
-              <div className="content">
+
+            <Segment vertical padded>              
                 <Route exact path="/" render={() => <ItemList />} />
-                <Route exact path="/categories" render={() => <CategoryList />} />
-              </div>
+                <Route exact path="/categories" render={() => null} />              
             </Segment>
 
-            <div>
-              <button onClick={this.handleClick}>More</button>
-            </div>
+            <Segment vertical >
+              <Icon link name="angle double down" onClick={this.handleClick} />              
+            </Segment>
 
-          </div>
+          </Segment>
 
 
         </Container>
@@ -80,3 +74,20 @@ export default connect(
   mapStateToProps,
   { itemsGetMore, itemsNewQuery, categoriesGet }
 )(App)
+
+
+
+
+{/* <div className="menu">
+<Link to="/">Programs</Link>&nbsp;
+<Link to="/categories">Categories</Link>
+</div>
+ */}
+
+
+{/* <Segment vertical floated="right">
+<div className="content">
+  <Route exact path="/" render={() => <ItemList />} />
+  <Route exact path="/categories" render={() => null} />
+</div>
+</Segment> */}
