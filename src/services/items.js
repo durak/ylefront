@@ -6,4 +6,9 @@ const getItems = async (offset) => {
   return response.data
 }
 
-export default { getItems }
+const getItemsWithQuery = async (query) => {
+  const response = await axios.get(`${baseUrl}/?availability=ondemand&${query}`)
+  return response.data
+}
+
+export default { getItems, getItemsWithQuery }

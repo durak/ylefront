@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const ItemList = ({ items }) => {
-  items.forEach((n) => console.log(n.image.id))
+  
   const item = (n) => {
     return (
       <li key={n.id}>

@@ -4,10 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import itemReducer from './reducers/itemReducer'
 import categoryReducer from './reducers/categoryReducer'
+import categoryFilterReducer from './reducers/categoryFilterReducer'
 
 const reducer = combineReducers({
   items: itemReducer,
-  categories: categoryReducer
+  categories: categoryReducer,
+  categoryFilter: categoryFilterReducer
 })
 
 const store = createStore(

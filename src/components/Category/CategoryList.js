@@ -1,39 +1,74 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Menu, Icon } from 'semantic-ui-react'
+import { categoryFilterToggle, mainCategoryFilterToggle } from '../../reducers/categoryFilterReducer'
 
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, filter, categoryFilterToggle, mainCategoryFilterToggle }) => {
+
+  const handleclick = (category) => () => {
+    categoryFilterToggle(category)
+  }
+
+  const handleMainClick = (category) => () => {
+    console.log('happens')
+    mainCategoryFilterToggle(category)
+  }
 
 
-  const category = (c) => {
+
+  const mainCategory = (c) => {
+
+    let isFiltered = filter.find((f) => f.id === c.id)
+    if (isFiltered) c = isFiltered
+
     return (
-      <ul key = {c.id}>
-        <li><a href={`localhost:3003/api/items?category=${c.id}`} target="_blank" rel="noreferrer">{c.title}</a></li>      
-        {c.children && c.children.map((n) => category(n))}  
-      </ul>
+      <Menu.Item key={c.id}>
+        <Icon name="toggle off" size="small" color="green" />
+        <Menu.Header disabled={true} onClick={handleMainClick(c)}>
+          <a>{c.title}</a>
+        </Menu.Header>
+        
+        <Menu.Menu>          
+
+          {c.status !== '+' && c.children && c.children.map((n) => subCategory(n))}
+
+        </Menu.Menu>
+      </Menu.Item>
     )
   }
 
-  console.log(categories.tv)
+  const subCategory = (c) => {
+
+    let isFiltered = filter.find((f) => f.id === c.id)
+    if (isFiltered) c = isFiltered
+
+    return (
+      <Menu.Item key={c.id} onClick={handleclick(c)}>
+        {c.title}
+        <Icon
+          name={c.status ? c.status === '+' ? "plus circle" : "minus circle" : "circle"}
+          color={c.status ? c.status === '+' ? "green" : "red" : "grey"}
+        />
+
+      </Menu.Item>
+    )
+  }
 
   return (
-    <div>
-      {categories.tv.children.map((n) => category(n))}
-      {categories.radio.children.map((n) => category(n))}
-      {categories.analytics.children.map((n) => category(n))}
-    </div>
+    categories.tv.children.map((n) => {
+      return mainCategory(n)
+    })
   )
-
-
 }
 
-
 const mapStateToProps = (state) => {
-  console.log('state', state)
   return {
-    categories: state.categories
+    categories: state.categories,
+    filter: state.categoryFilter
   }
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  { categoryFilterToggle, mainCategoryFilterToggle }
 )(CategoryList)
