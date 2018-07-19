@@ -1,5 +1,6 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
+import areenaLogo from '../yle-areena-white_V.svg'
 
 
 import Topmenu from './Sidemenu/Topmenu'
@@ -29,6 +30,11 @@ const Sidemenu = (props) => {
       <Filtermenu />
       <CategoryListContainer />
 
+      
+      <Menu.Item>
+      <Image as={Menu.Item} src={areenaLogo} centered size="tiny" href={`https://areena.yle.fi/`} target="blank" rel="noopener noreferrer" />      
+      </Menu.Item>
+      
     </Menu>
   )
 }

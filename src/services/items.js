@@ -7,6 +7,7 @@ const getItems = async (offset) => {
 }
 
 const getItemsWithQuery = async (query) => {
+  console.log(query)
   const response = await axios.get(`${baseUrl}/?availability=ondemand&${query}`)
   return response.data
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Item } from 'semantic-ui-react'
+import { Item, Image, Icon } from 'semantic-ui-react'
 
 const ItemList = ({ items }) => {
 
@@ -14,7 +14,7 @@ const ItemList = ({ items }) => {
   const item = (n) => {
     return (
       <Item key={n.id}>
-        <Item.Image src={`http://images.cdn.yle.fi/image/upload/w_320,h_320,c_fit/${n.image.id}.jpg`} alt="kuva" size="medium" />
+        {n.image.id && <Item.Image src={`http://images.cdn.yle.fi/image/upload/w_320,h_320,c_fit/${n.image.id}.jpg`} alt="kuva" size="medium" />}
         <Item.Content>
           <Item.Header>
             <span>
@@ -25,12 +25,17 @@ const ItemList = ({ items }) => {
                   "no title"}
             </span>
           </Item.Header>
+          
+          <Item.Meta>
+            <a href={`https://areena.yle.fi/${n.id}`} target="blank" rel="noopener noreferrer"><Icon name="play circle" link color="blue" /></a>                      
+          </Item.Meta>
 
           <Item.Meta>
             {n.originalTitle &&
               <span>Alkuperäisnimi: {n.originalTitle}</span>
             }
           </Item.Meta>
+
           <Item.Meta><span> Tyyppi: {n.type}</span></Item.Meta>
 
           <Item.Description>

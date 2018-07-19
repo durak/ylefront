@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { Container, Segment, Menu, Icon } from 'semantic-ui-react'
+import { Container, Segment, Icon } from 'semantic-ui-react'
 
-import { itemsGetMore, itemsNewQuery } from '../reducers/itemReducer'
-import { categoriesGet } from '../reducers/categoryReducer'
-import ItemList from './ItemList'
-import CategoryListContainer from './Category/CategoryListContainer'
-import Sidemenu from './Sidemenu'
+import { itemsGetMore, itemsNewQuery } from './reducers/itemReducer'
+import { categoriesGet } from './reducers/categoryReducer'
+import ItemList from './components/ItemList'
+
+import Sidemenu from './components/Sidemenu'
 
 class App extends Component {
 
-  componentDidMount() {
-    //this.props.itemsGet(0)
+  componentDidMount() {    
     this.props.itemsNewQuery()
     this.props.categoriesGet()
   }
@@ -27,22 +26,8 @@ class App extends Component {
       <Router>
         <Container>
 
+          <Sidemenu />
           
-          <Menu inverted fixed="left" vertical style={{ width: '250px', overflowY: 'scroll' }}>
-
-            
-            <Menu as={Menu.Item}>   
-              <Menu.Header>AREENATON</Menu.Header>           
-              <Menu.Item link as={Link} to="/">Ohjelmat</Menu.Item>              
-              <Menu.Item link>Suosikit</Menu.Item>
-              <Menu.Item link>Asetukset</Menu.Item>                        
-            </Menu>
-            
-
-            
-              <CategoryListContainer />
-            
-          </Menu>
 
           <Segment style={{ marginLeft: '250px' }}>
 

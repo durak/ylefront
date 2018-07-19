@@ -6,7 +6,7 @@ const Topmenu = () => {
 
   return (
     <Menu as={Menu.Item}>
-      <Menu.Header>AREENATON</Menu.Header>
+      <Menu.Header>AREENAMINER</Menu.Header>
       <Menu.Item link as={Link} to="/">Ohjelmat</Menu.Item>
       <Menu.Item link>Suosikit</Menu.Item>
       <Menu.Item link>Asetukset</Menu.Item>

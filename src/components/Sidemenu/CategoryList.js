@@ -1,10 +1,11 @@
 import React from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
 
-const CategoryList = ({ categories, filter, handleMainClick, handleSubClick, handleMainCollapse }) => {
+const CategoryList = ({ categories, filter, isCollapsed, handleMainClick, handleSubClick, handleMainCollapse }) => {
 
   const mainCategory = (category) => {
     const c = filter(category)
+    const collapsed = isCollapsed(category)
     
     return (
       <Menu.Item key={c.id}>
@@ -21,7 +22,7 @@ const CategoryList = ({ categories, filter, handleMainClick, handleSubClick, han
         </Menu.Header>
 
         <Menu.Menu>
-          {c.collapsed !== true && c.children && c.children.map((n) => subCategory(n))}
+          {collapsed !== true && c.children && c.children.map((n) => subCategory(n))}
         </Menu.Menu>
 
       </Menu.Item>
